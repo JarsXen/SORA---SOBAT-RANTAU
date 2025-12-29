@@ -1,8 +1,5 @@
 # 🌌 SORA - Sobat Rantau
 
-![Sora Banner](https://via.placeholder.com/1200x600/000000/0A84FF?text=SORA+Dashboard+Preview)
-*(Ganti link di atas dengan screenshot aplikasi kamu nanti)*
-
 > **Teman cerita dan produktivitas untukmu yang jauh dari rumah.**
 
 ## 📖 Tentang SORA
