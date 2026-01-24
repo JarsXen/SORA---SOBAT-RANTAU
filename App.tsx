@@ -5,7 +5,6 @@ import Onboarding from './components/Onboarding';
 import Dashboard from './components/Dashboard';
 import MaintenancePage from './components/MaintenancePage';
 
-// UBAH KE "true" JIKA INGIN MENGAKTIFKAN MODE MAINTENANCE
 const IS_MAINTENANCE = true;
 
 function App() {
@@ -13,7 +12,6 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for existing session
     const checkUser = async () => {
       try {
         const storedUser = await storageService.getUser();
