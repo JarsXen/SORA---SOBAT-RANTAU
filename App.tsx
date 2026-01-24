@@ -3,6 +3,10 @@ import { Mahasiswa } from './types';
 import { storageService } from './services/storageService';
 import Onboarding from './components/Onboarding';
 import Dashboard from './components/Dashboard';
+import MaintenancePage from './components/MaintenancePage';
+
+// UBAH KE "true" JIKA INGIN MENGAKTIFKAN MODE MAINTENANCE
+const IS_MAINTENANCE = true;
 
 function App() {
   const [user, setUser] = useState<Mahasiswa | null>(null);
@@ -10,11 +14,20 @@ function App() {
 
   useEffect(() => {
     // Check for existing session
-    const storedUser = storageService.getUser();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-    setLoading(false);
+    const checkUser = async () => {
+      try {
+        const storedUser = await storageService.getUser();
+        if (storedUser) {
+          setUser(storedUser);
+        }
+      } catch (error) {
+        console.error("Failed to restore session", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    checkUser();
   }, []);
 
   const handleLogin = (newUser: Mahasiswa) => {
@@ -26,10 +39,15 @@ function App() {
     setUser(null);
   };
 
+  // Logic Maintenance Mode
+  if (IS_MAINTENANCE) {
+    return <MaintenancePage />;
+  }
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     );
   }
