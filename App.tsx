@@ -5,7 +5,7 @@ import Onboarding from './components/Onboarding';
 import Dashboard from './components/Dashboard';
 import MaintenancePage from './components/MaintenancePage';
 
-const IS_MAINTENANCE = true;
+const IS_MAINTENANCE = false;
 
 function App() {
   const [user, setUser] = useState<Mahasiswa | null>(null);
